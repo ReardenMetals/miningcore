@@ -14,11 +14,15 @@ using NBitcoin.DataEncoders;
 using Newtonsoft.Json.Linq;
 using Contract = Miningcore.Contracts.Contract;
 using Transaction = NBitcoin.Transaction;
+using NLog;
 
 namespace Miningcore.Blockchain.Bitcoin;
 
 public class BitcoinJob
 {
+    
+    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+    
     protected IHashAlgorithm blockHasher;
     protected IMasterClock clock;
     protected IHashAlgorithm coinbaseHasher;
@@ -436,12 +440,17 @@ public class BitcoinJob
             // https://github.com/litecoin-project/litecoin/blob/0.21/doc/mweb/mining-changes.md
             if(coin.HasMWEB)
             {
-                var separator = new byte[] { 0x01 };
                 var mweb = BlockTemplate.Extra.SafeExtensionDataAs<MwebBlockTemplateExtra>();
-                var mwebRaw = mweb.Mweb.HexToByteArray();
 
-                bs.ReadWrite(ref separator);
-                bs.ReadWrite(ref mwebRaw);
+		if (mweb != null && mweb.Mweb != null) {
+			var separator = new byte[] { 0x01 };
+	                // var mweb = BlockTemplate.Extra.SafeExtensionDataAs<MwebBlockTemplateExtra>();
+        	        var mwebRaw = mweb.Mweb.HexToByteArray();
+                	bs.ReadWrite(ref separator);
+                	bs.ReadWrite(ref mwebRaw);
+		} else {
+			logger.Warn(() => $"MWEB IS NULL");
+		}
             }
 
             return stream.ToArray();
