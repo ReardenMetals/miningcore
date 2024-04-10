@@ -26,5 +26,6 @@ RUN chown -R miningcore:miningcore /app
 USER miningcore
 
 COPY --from=BUILDER /app/build ./
+RUN mkdir ./config
 
 CMD ["./Miningcore", "-c", "config/config.json" ]
