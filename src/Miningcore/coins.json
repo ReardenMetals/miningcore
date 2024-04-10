@@ -2386,6 +2386,46 @@
         "explorerTxLink": "https://chainz.cryptoid.info/ltc/tx.dws?{0}.htm",
         "explorerAccountLink": "https://chainz.cryptoid.info/ltc/address.dws?{0}.htm"
     },
+    "texitcoin": {
+        "name": "TexitCoin",
+        "canonicalName": "TexitCoin",
+        "symbol": "TXC",
+        "family": "bitcoin",
+        "website": "",
+        "market": "",
+        "twitter": "",
+        "telegram": "",
+        "discord": "",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "scrypt",
+            "args": [1024, 1]
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "sha256d"
+                }
+            ]
+        },
+        "posBlockHasher": {
+            "hash": "reverse",
+            "args": [
+                {
+                    "hash": "scrypt",
+                    "args": [1024, 1]
+                }
+            ]
+        },
+        "hasMWEB": true,
+        "shareMultiplier": 65536,
+        "explorerBlockLink": "https://chainz.cryptoid.info/ltc/block.dws?$height$.htm",
+        "explorerTxLink": "https://chainz.cryptoid.info/ltc/tx.dws?{0}.htm",
+        "explorerAccountLink": "https://chainz.cryptoid.info/ltc/address.dws?{0}.htm"
+    },
     "litecoin-cash": {
         "name": "Litecoin Cash",
         "canonicalName": "Litecoin-Cash",

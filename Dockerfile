@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get -y install \
     cmake build-essential libssl-dev \
     pkg-config libboost-all-dev \
-    libsodium-dev libzmq5 libzmq3-dev libgmp-dev
+    libsodium-dev libzmq5 libzmq3-dev libgmp-dev ninja-build
 
 COPY . .
 
