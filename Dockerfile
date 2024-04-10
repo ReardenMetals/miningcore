@@ -27,4 +27,4 @@ USER miningcore
 
 COPY --from=BUILDER /app/build ./
 
-CMD ["./Miningcore", "-c", "config.json" ]
+CMD ["./Miningcore", "-c", "config/config.json" ]
